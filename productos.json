@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "nombre": "Camiseta Faro",
+    "precio": 15000,
+    "categoria": "Ropa",
+    "descripcion": "Camiseta de algodón con diseño exclusivo de Faro Shop.",
+    "imagen": "/imagenes/camiseta.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Tacita Faro",
+    "precio": 8000,
+    "categoria": "Hogar",
+    "descripcion": "Taza de cerámica con diseño de Faro Shop.",
+    "imagen": "/imagenes/taza.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Mochila Urbana",
+    "precio": 30000,
+    "categoria": "Accesorios",
+    "descripcion": "Mochila práctica para uso diario.",
+    "imagen": "/imagenes/mochila.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Cuaderno Faro",
+    "precio": 6000,
+    "categoria": "Papelería",
+    "descripcion": "Cuaderno para notas y apuntes.",
+    "imagen": "/imagenes/cuaderno.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Llavero Faro",
+    "precio": 4000,
+    "categoria": "Accesorios",
+    "descripcion": "Llavero con diseño de Faro Shop.",
+    "imagen": "/imagenes/llavero.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Gorra Faro",
+    "precio": 12000,
+    "categoria": "Ropa",
+    "descripcion": "Gorra de algodón con logo de Faro Shop.",
+    "imagen": "/imagenes/gorra.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Botella de Agua",
+    "precio": 10000,
+    "categoria": "Hogar",
+    "descripcion": "Botella reutilizable con diseño de Faro Shop.",
+    "imagen": "/imagenes/botella de agua.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Pulsera Faro",
+    "precio": 7000,
+    "categoria": "Accesorios",
+    "descripcion": "Pulsera de silicona con logo de Faro Shop.",
+    "imagen": "/imagenes/pulsera.jpg"
+  }
+]
