@@ -7,7 +7,7 @@ function ItemListContainer() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/productos.json")
+    fetch(`${import.meta.env.BASE_URL}productos.json`)
       .then((respuesta) => {
         if (!respuesta.ok) {
           throw new Error("No se pudo cargar productos.json");

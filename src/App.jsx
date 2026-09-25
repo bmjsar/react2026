@@ -1,28 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
-
 import Home from "./pages/Home";
-import Productos from "./pages/Productos";
+import ItemListContainer from "./components/ItemListContainer";
 import ProductoDetalle from "./pages/ProductoDetalle";
 import Carrito from "./pages/Carrito";
 
 function App() {
   return (
-    <BrowserRouter>
-
+<BrowserRouter
+  basename={import.meta.env.PROD ? "/react2026" : "/"}
+>
       <Layout>
-
         <Routes>
 
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
 
           <Route
             path="/productos"
-            element={<Productos />}
+            element={<ItemListContainer />}
           />
 
           <Route
@@ -36,9 +32,7 @@ function App() {
           />
 
         </Routes>
-
       </Layout>
-
     </BrowserRouter>
   );
 }
