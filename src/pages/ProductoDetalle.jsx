@@ -54,9 +54,9 @@ function ProductoDetalle() {
     <section className="detalle">
 
       <img
-        src={producto.imagen}
+        src={`${import.meta.env.BASE_URL}${producto.imagen}`}
         alt={producto.nombre}
-      />
+/>
 
       <div>
         <h1>{producto.nombre}</h1>
