@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -6,9 +7,10 @@ function ProductoDetalle() {
 
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/productos.json")
+    fetch(`${import.meta.env.BASE_URL}productos.json`)
       .then((respuesta) => {
         if (!respuesta.ok) {
           throw new Error("No se pudo cargar productos.json");
@@ -26,6 +28,7 @@ function ProductoDetalle() {
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
         setCargando(false);
       });
   }, [id]);
@@ -35,6 +38,18 @@ function ProductoDetalle() {
       <p className="mensaje">
         Cargando producto...
       </p>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="detalle">
+        <h2>Ocurrió un error al cargar el producto.</h2>
+
+        <Link className="boton" to="/productos">
+          Volver a productos
+        </Link>
+      </section>
     );
   }
 
@@ -56,7 +71,7 @@ function ProductoDetalle() {
       <img
         src={`${import.meta.env.BASE_URL}${producto.imagen}`}
         alt={producto.nombre}
-/>
+      />
 
       <div>
         <h1>{producto.nombre}</h1>
