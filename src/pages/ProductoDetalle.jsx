@@ -1,50 +1,80 @@
 
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { useCart } from "../context/CartContext";
 
 function ProductoDetalle() {
   const { id } = useParams();
+
+  const {
+    carrito,
+    mensaje,
+    agregarAlCarrito,
+  } = useCart();
 
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}productos.json`)
-      .then((respuesta) => {
-        if (!respuesta.ok) {
-          throw new Error("No se pudo cargar productos.json");
-        }
+    let activo = true;
 
-        return respuesta.json();
-      })
-      .then((datos) => {
-        const productoEncontrado = datos.find(
-          (producto) => producto.id === Number(id)
+    async function cargarProducto() {
+      setCargando(true);
+      setError(false);
+      setProducto(null);
+
+      try {
+        const consulta = await getDocs(
+          collection(db, "productos nacionales")
         );
 
-        setProducto(productoEncontrado);
-        setCargando(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(true);
-        setCargando(false);
-      });
+        const productos = consulta.docs.map((documento) => ({
+          id: documento.id,
+          ...documento.data(),
+        }));
+
+        const encontrado = productos.find(
+          (item) => item.id === id
+        );
+
+        if (activo) {
+          setProducto(encontrado ?? null);
+        }
+      } catch (error) {
+        console.error(
+          "Error al cargar el producto desde Firestore:",
+          error
+        );
+
+        if (activo) {
+          setError(true);
+        }
+      } finally {
+        if (activo) {
+          setCargando(false);
+        }
+      }
+    }
+
+    cargarProducto();
+
+    return () => {
+      activo = false;
+    };
   }, [id]);
 
   if (cargando) {
-    return (
-      <p className="mensaje">
-        Cargando producto...
-      </p>
-    );
+    return <p className="mensaje">Cargando producto...</p>;
   }
 
   if (error) {
     return (
       <section className="detalle">
-        <h2>Ocurrió un error al cargar el producto.</h2>
+        <h2>Error al cargar el producto.</h2>
+        <p>Verificá tu conexión y la configuración de Firebase.</p>
 
         <Link className="boton" to="/productos">
           Volver a productos
@@ -65,45 +95,74 @@ function ProductoDetalle() {
     );
   }
 
+  const productoEnCarrito = carrito.find(
+    (item) => item.id === producto.id
+  );
+
+  const cantidadEnCarrito = productoEnCarrito
+    ? productoEnCarrito.cantidad
+    : 0;
+
+  const stockDisponible = Math.max(
+    0,
+    Number(producto.stock || 0) - cantidadEnCarrito
+  );
+
+  const sinStock = stockDisponible === 0;
+
   return (
     <section className="detalle">
-
       <img
-        src={`${import.meta.env.BASE_URL}${producto.imagen}`}
+        src={producto.imagen}
         alt={producto.nombre}
+        onError={(evento) => {
+          console.error(
+            "No se pudo cargar la imagen:",
+            producto.imagen
+          );
+          evento.currentTarget.style.display = "none";
+        }}
       />
 
       <div>
         <h1>{producto.nombre}</h1>
 
-        <p>
-          Categoría: {producto.categoria}
+        <p>Categoría: {producto.categoria}</p>
+
+        <p>{producto.descripcion}</p>
+
+        <h2>${producto.precio}</h2>
+
+        <p className="stock">
+          {sinStock
+            ? "Producto sin stock disponible"
+            : `Stock disponible: ${stockDisponible} unidades`}
         </p>
 
-        <p>
-          {producto.descripcion}
-        </p>
-
-        <h2>
-          ${producto.precio}
-        </h2>
-
-        <button className="boton">
-          Agregar al carrito
+        <button
+          className="boton"
+          disabled={sinStock}
+          onClick={() => agregarAlCarrito(producto)}
+        >
+          {sinStock ? "Sin stock" : "Agregar al carrito"}
         </button>
 
-        <br />
+        {mensaje && (
+          <p className="mensaje-stock" role="status">
+            {mensaje}
+          </p>
+        )}
 
-        <Link
-          className="volver"
-          to="/productos"
-        >
-          ← Volver a productos
-        </Link>
+        <p>
+          <Link className="volver" to="/productos">
+            ← Volver a productos
+          </Link>
+        </p>
       </div>
-
     </section>
   );
 }
 
 export default ProductoDetalle;
+
+
