@@ -1,25 +1,14 @@
 
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+
 
 function Item({ producto }) {
-  const { carrito } = useCart();
+  
 
-  const productoEnCarrito = carrito.find(
-    (item) => item.id === producto.id
-  );
+  const stockDisponible = Number(producto.stock || 0);
 
-  const cantidadEnCarrito = productoEnCarrito
-    ? productoEnCarrito.cantidad
-    : 0;
-
-  const stockDisponible = Math.max(
-    0,
-    producto.stock - cantidadEnCarrito
-  );
-
-  // Si la imagen es una URL externa, la usamos directamente.
-  // Si es local, la buscamos dentro de public.
+  // Si la imagen es externa, usamos su URL directamente.
+  // Si es local, buscamos la imagen dentro de public.
   const rutaImagen = producto.imagen?.startsWith("http")
     ? producto.imagen
     : `${import.meta.env.BASE_URL}${producto.imagen?.replace(/^\/+/, "")}`;
@@ -29,7 +18,7 @@ function Item({ producto }) {
       <img
         src={rutaImagen}
         alt={producto.nombre}
-        onError={(e) => {
+        onError={() => {
           console.error(
             "No se pudo cargar la imagen:",
             rutaImagen
@@ -58,7 +47,7 @@ function Item({ producto }) {
 
         <Link
           className="boton"
-          to={`/producto/${producto.id}`}
+          to={`/productos-nacionales/${producto.id}`}
         >
           Ver detalle
         </Link>
@@ -68,3 +57,4 @@ function Item({ producto }) {
 }
 
 export default Item;
+

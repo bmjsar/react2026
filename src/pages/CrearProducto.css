@@ -1,0 +1,112 @@
+
+/* ===== Formulario Crear Producto - Faro Shop ===== */
+
+.formulario-producto {
+  width: min(90%, 700px);
+  margin: 40px auto;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #dce4ec;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  color: #243247;
+}
+
+.formulario-producto h1 {
+  margin: 0 0 12px;
+  color: #174a78;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.formulario-descripcion {
+  margin-bottom: 25px;
+  color: #64748b;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.formulario-producto form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formulario-producto label {
+  margin-top: 8px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.formulario-producto input,
+.formulario-producto textarea {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font: inherit;
+}
+
+.formulario-producto textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formulario-producto input:focus,
+.formulario-producto textarea:focus {
+  outline: none;
+  border-color: #2563a6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 166, 0.15);
+}
+
+.formulario-producto input::placeholder {
+  color: #94a3b8;
+}
+
+.formulario-producto .mensaje-error {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.formulario-producto button[type="submit"] {
+  margin-top: 15px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #174a78;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.formulario-producto button[type="submit"]:hover:not(:disabled) {
+  background-color: #103758;
+}
+
+.formulario-producto button[type="submit"]:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+@media (max-width: 600px) {
+  .formulario-producto {
+    width: 94%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .formulario-producto h1 {
+    font-size: 1.6rem;
+  }
+}

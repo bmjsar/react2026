@@ -1,6 +1,12 @@
 
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { useSearchParams, Link } from "react-router-dom";
 import { db } from "../firebase";
 import Item from "./Item";
 
@@ -8,6 +14,10 @@ function ItemListContainer() {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
+
+  const [searchParams] = useSearchParams();
+
+  const categoriaSeleccionada = searchParams.get("categoria");
 
   useEffect(() => {
     async function obtenerProductos() {
@@ -32,6 +42,33 @@ function ItemListContainer() {
     obtenerProductos();
   }, []);
 
+  async function eliminarProducto(id) {
+    const confirmar = window.confirm(
+      "¿Seguro que querés eliminar este producto?"
+    );
+
+    if (!confirmar) return;
+
+    try {
+      await deleteDoc(doc(db, "productos nacionales", id));
+
+      setProductos((actuales) =>
+        actuales.filter((producto) => producto.id !== id)
+      );
+    } catch (error) {
+      console.error("Error al eliminar el producto:", error);
+      alert("No se pudo eliminar el producto.");
+    }
+  }
+
+  const productosFiltrados = categoriaSeleccionada
+    ? productos.filter(
+        (producto) =>
+          String(producto.categoria || "").trim().toLowerCase() ===
+          categoriaSeleccionada.trim().toLowerCase()
+      )
+    : productos;
+
   if (cargando) {
     return <p className="mensaje">Cargando productos...</p>;
   }
@@ -45,21 +82,36 @@ function ItemListContainer() {
     );
   }
 
-  if (productos.length === 0) {
-    return <p className="mensaje">No hay productos cargados.</p>;
-  }
-
   return (
     <section className="productos-container">
-      <h2>Nuestros productos</h2>
+      <h2>
+        {categoriaSeleccionada
+          ? `Productos de ${categoriaSeleccionada}`
+          : "Nuestros productos"}
+      </h2>
 
-      <div className="productos-grid">
-        {productos.map((producto) => (
-          <Item key={producto.id} producto={producto} />
-        ))}
+      <div className="categorias-filtro">
+        <Link to="/productos">Todos</Link>
+        <Link to="/productos?categoria=Hogar">Hogar</Link>
+        <Link to="/productos?categoria=Ropa">Ropa</Link>
+        <Link to="/productos?categoria=Accesorios">Accesorios</Link>
       </div>
+
+      {productosFiltrados.length === 0 ? (
+        <p className="mensaje">
+          No hay productos disponibles en esta categoría.
+        </p>
+      ) : (
+        <div className="productos-grid">
+          {productosFiltrados.map((producto) => (
+            <Item key={producto.id} producto={producto} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
 export default ItemListContainer;
+
+

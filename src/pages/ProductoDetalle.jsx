@@ -95,18 +95,10 @@ function ProductoDetalle() {
     );
   }
 
-  const productoEnCarrito = carrito.find(
-    (item) => item.id === producto.id
-  );
-
-  const cantidadEnCarrito = productoEnCarrito
-    ? productoEnCarrito.cantidad
-    : 0;
-
-  const stockDisponible = Math.max(
-    0,
-    Number(producto.stock || 0) - cantidadEnCarrito
-  );
+const stockDisponible = Math.max(
+  0,
+  Number(producto.stock || 0)
+);
 
   const sinStock = stockDisponible === 0;
 

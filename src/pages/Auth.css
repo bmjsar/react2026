@@ -1,0 +1,114 @@
+
+/* FORMULARIOS DE LOGIN Y REGISTRO */
+
+.formulario-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 45px auto;
+  padding: 38px 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(22, 45, 102, 0.12);
+  border: 1px solid #e5eaf2;
+}
+
+.formulario-container h2 {
+  color: #1f3c88;
+  font-size: 1.9rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.formulario-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formulario-container label {
+  color: #26364b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.formulario-container input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 1rem;
+  color: #26364b;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formulario-container input:focus {
+  outline: none;
+  border-color: #245b91;
+  box-shadow: 0 0 0 3px rgba(36, 91, 145, 0.13);
+}
+
+.formulario-container button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 7px;
+  background: #1f3c88;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.formulario-container button:hover {
+  background: #162d66;
+  transform: translateY(-2px);
+}
+
+.formulario-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.formulario-container > p {
+  margin-top: 25px;
+  text-align: center;
+  color: #555;
+  line-height: 1.6;
+}
+
+.formulario-container a {
+  color: #245b91;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.formulario-container a:hover {
+  text-decoration: underline;
+}
+
+.formulario-container .error {
+  color: #c0392b;
+  background: #fff0ee;
+  border: 1px solid #f2c4be;
+  border-radius: 7px;
+  padding: 11px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .formulario-container {
+    width: auto;
+    margin: 25px 10px;
+    padding: 28px 22px;
+  }
+
+  .formulario-container h2 {
+    font-size: 1.6rem;
+  }
+}

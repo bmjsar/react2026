@@ -433,3 +433,331 @@ body {
   border: none;
   cursor: pointer;
 }
+
+/* FILTRO DE CATEGORÍAS */
+
+.categorias-filtro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 30px;
+}
+
+.categorias-filtro a {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #245b78;
+  border-radius: 25px;
+  color: #245b78;
+  background-color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.categorias-filtro a:hover {
+  background-color: #245b78;
+  color: white;
+}
+
+
+/* =====================================
+   NUEVA PORTADA FARO SHOP
+===================================== */
+
+.home-tienda {
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+
+/* BANNER PRINCIPAL */
+
+.home-banner {
+  position: relative;
+  min-height: 370px;
+  padding: 65px 7%;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(120deg, #162d66, #245b91);
+  color: white;
+}
+
+.home-banner-contenido {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.home-etiqueta,
+.home-seccion-titulo > span,
+.home-cuenta > div > span {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.home-etiqueta {
+  color: #d7e8ff;
+}
+
+.home-banner h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.home-banner p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #e4edfa;
+}
+
+.home-boton-principal {
+  display: inline-block;
+  padding: 14px 27px;
+  background-color: white;
+  color: #1f3c88;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.home-boton-principal:hover {
+  background-color: #e4edfa;
+  transform: translateY(-2px);
+}
+
+.home-banner-decoracion {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-banner-decoracion span {
+  font-size: 12rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* TÍTULOS DE SECCIÓN */
+
+.home-seccion-titulo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.home-seccion-titulo > span {
+  color: #245b78;
+}
+
+.home-seccion-titulo h2 {
+  color: #1f3c88;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.home-seccion-titulo p {
+  color: #666;
+  font-size: 1.05rem;
+}
+
+/* TARJETAS DE CATEGORÍAS */
+
+.home-categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.home-categoria {
+  min-height: 230px;
+  padding: 30px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #26364b;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-categoria:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+.home-hogar {
+  background: #e8f0e8;
+}
+
+.home-ropa {
+  background: #e9edf8;
+}
+
+.home-accesorios {
+  background: #f5eee5;
+}
+
+.home-categoria-icono {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  color: #245b78;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.home-categoria h3 {
+  font-size: 1.5rem;
+  color: #1f3c88;
+  margin-bottom: 8px;
+}
+
+.home-categoria p {
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.home-categoria-enlace {
+  margin-top: auto;
+  font-weight: bold;
+  color: #245b78;
+}
+
+/* ACCESO A CUENTAS */
+
+.home-cuenta {
+  background-color: white;
+  padding: 35px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.home-cuenta > div > span {
+  color: #245b78;
+  margin-bottom: 12px;
+}
+
+.home-cuenta h2 {
+  color: #1f3c88;
+  margin-bottom: 12px;
+  font-size: 1.7rem;
+}
+
+.home-cuenta p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.home-cuenta-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-boton-login,
+.home-boton-registro {
+  padding: 12px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.home-boton-login {
+  background-color: #1f3c88;
+  color: white;
+}
+
+.home-boton-login:hover {
+  background-color: #162d66;
+}
+
+.home-boton-registro {
+  border: 1px solid #1f3c88;
+  color: #1f3c88;
+  background-color: white;
+}
+
+.home-boton-registro:hover {
+  background-color: #edf2fa;
+}
+
+/* RESPONSIVE DE LA PORTADA */
+
+@media (max-width: 800px) {
+  .home-banner-decoracion {
+    right: -70px;
+    opacity: 0.6;
+  }
+
+  .home-categorias-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-cuenta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-tienda {
+    gap: 35px;
+  }
+
+  .home-banner {
+    min-height: 330px;
+    padding: 40px 25px;
+  }
+
+  .home-banner-decoracion {
+    right: -120px;
+    width: 220px;
+    height: 220px;
+  }
+
+  .home-banner-decoracion span {
+    font-size: 9rem;
+  }
+
+  .home-cuenta {
+    padding: 25px 20px;
+  }
+
+  .home-cuenta-botones {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .home-boton-login,
+  .home-boton-registro {
+    width: 100%;
+  }
+}
